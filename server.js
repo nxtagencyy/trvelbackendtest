@@ -3,8 +3,6 @@ import { connectDB } from "./db/db.js";
 import userRouter from "./routes/user.router.js";
 import authRouter from "./routes/auth.router.js";
 import tourRouter from "./routes/tourPackage.router.js";
-import enquiryRouter from "./routes/enquiry.router.js";
-
 import cors from "cors";
 
 const app = express();
@@ -43,7 +41,6 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auth", authRouter);
 
 app.use("/api/tours", tourRouter);
-app.use("/api/enquiry", enquiryRouter);
 
 app.get("/", (req, res) => {
   res.send("API is running...");
