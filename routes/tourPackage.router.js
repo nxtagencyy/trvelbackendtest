@@ -3,24 +3,24 @@ import TourPackage from "../models/tourPackageModel.js";
 
 const router = express.Router();
 
-// 📌 POST - Create new tour package
+// 📌 POST - Add a new tour
 router.post("/", async (req, res) => {
   try {
     const tour = new TourPackage(req.body);
     await tour.save();
     res.status(201).json({ success: true, data: tour });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// 📌 GET - Retrieve all tour packages
+// 📌 GET all tours
 router.get("/", async (req, res) => {
   try {
     const tours = await TourPackage.find();
     res.status(200).json({ success: true, data: tours });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
@@ -28,12 +28,14 @@ router.get("/", async (req, res) => {
 router.get("/:slug", async (req, res) => {
   try {
     const tour = await TourPackage.findOne({ slug: req.params.slug });
-    if (!tour) {
-      return res.status(404).json({ success: false, message: "Not found" });
-    }
+    if (!tour)
+      return res
+        .status(404)
+        .json({ success: false, message: "Tour not found" });
+
     res.status(200).json({ success: true, data: tour });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
