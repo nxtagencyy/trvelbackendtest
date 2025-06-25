@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export const connectDB = async () => {
   try {
     await mongoose.connect(
-      `mongodb+srv://cdevnxtagency:SC1OKrL7mZIzzUwk@cluster0.th57ghz.mongodb.net/trvelweb?retryWrites=true&w=majority&appName=Cluster0`,
+      `mongodb+srv://cdevnxtagency:WyMj5N6ozVshVhfk@cluster0.uenjbun.mongodb.net/travelweb?retryWrites=true&w=majority&appName=Cluster0`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
